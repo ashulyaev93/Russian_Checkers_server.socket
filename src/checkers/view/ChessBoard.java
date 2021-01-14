@@ -12,11 +12,11 @@ import java.awt.*;
  *
  * @author Kapellan
  */
-class ChessBoard extends JPanel {
+public class ChessBoard extends JPanel {
 
     ChessBoardData data;
 
-    ChessBoard(ChessBoardData data) {
+    public ChessBoard(ChessBoardData data) {
         this.data = data;
         this.setMinimumSize(data.PREFERRED_SIZE);
         this.setPreferredSize(data.PREFERRED_SIZE);

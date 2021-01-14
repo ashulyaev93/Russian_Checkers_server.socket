@@ -1,7 +1,7 @@
 package checkers.controller;
 
 import checkers.model.*;
-import checkers.view.MainWindow;
+import checkers.MainWindow;
 
 import java.awt.*;
 import java.awt.event.*;

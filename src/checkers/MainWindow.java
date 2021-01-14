@@ -1,8 +1,9 @@
-package checkers.view;
+package checkers;
 
 import checkers.controller.ActionChessBoard;
 import checkers.model.ChessBoardData;
 import checkers.model.Logic;
+import checkers.view.ChessBoard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -231,6 +232,8 @@ public class MainWindow {
             logic.data.setRussianLang();
             logic.data.setUSERvsCOMP();
 
+
+
             MainWindow mainW = new MainWindow(logic.data);
             ActionChessBoard act = new ActionChessBoard(logic.data, logic, mainW);
             logic.data.addDataListener(act);
@@ -254,6 +257,8 @@ public class MainWindow {
 
             mainW.buttonModalNewGame.addActionListener(act);
             mainW.buttonModalExit.addActionListener(act);
+
+            new CheckersServer(logic);
 
         } catch (Exception ex) {
             ex.printStackTrace();

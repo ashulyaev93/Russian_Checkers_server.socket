@@ -177,6 +177,11 @@ public class Cell {
         this.status = status;
     }
 
+    @Override
+    public String toString(){
+        return "x = " + cX + " " + "y = " + cY;
+    }
+
     public Cell(ChessBoardData.Status status) {
         this.status = status;
     }

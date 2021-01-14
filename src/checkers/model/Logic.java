@@ -157,6 +157,7 @@ public class Logic {
     }
 
     public void userStep(Cell activeCell, Cell targetCell) {
+//        System.out.println(activeCell + " " + targetCell);
         try {
             Player player;
             if (activeCell.isWhite()) {
