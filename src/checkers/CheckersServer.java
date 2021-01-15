@@ -3,48 +3,14 @@ package checkers;
 import checkers.model.Cell;
 import checkers.model.ChessBoardData;
 import checkers.model.Logic;
-import checkers.view.ChessBoard;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class CheckersServer {
-//    public CheckersServer(Logic logic) {
-//        ServerSocket server = null; //создаём сервер;
-//        Socket socket = null; //создаём сокет;
-//
-//        try {
-//            server = new ServerSocket(8189); //определяем порт;
-//            System.out.println("Сервер запущен");
-//            socket = server.accept(); //точка подключения;
-//            System.out.println("Клиент подключен");
-//
-//            Scanner in = new Scanner(socket.getInputStream());//входящий поток;
-//            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);//возврат потока вывода;
-//            Scanner console = new Scanner(System.in);//ввод сообщений в консоль;
-//
-//            Thread t1 = new Thread(new Runnable() { //поток выхода и его запуск;
-//                @Override
-//                public void run() {
-//                    while (true) {
-//                        String str = in.nextLine();
-//                        if (str.equals("/end")) {
-//                            out.println("/end");
-//                            break;
-//                        }
-//                        System.out.println("Client " + str);
-//                    }
-//                }
-//            });
-//            t1.start();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     public CheckersServer(Logic logic) {
 
         ServerSocket server = null; //создаём сервер;
@@ -90,21 +56,40 @@ public class CheckersServer {
                             out.println("Используйте цифры от 1 до 8");
                             continue;
                         }
-                        int x1 = Character.getNumericValue(str.charAt(0));// - Character.getNumericValue('a') * 55 + 25;
-                        int x2 = (int)str.charAt(2) - (int)'a'  * 55 + 25;
 
-                        int y1 = (int)str.charAt(1) - (int)'1' * 55 + 25;
-                        int y2 = (int)str.charAt(3) - (int)'1' * 55 + 25;
+                        HashMap<Character, Integer> x = new HashMap<Character, Integer>();
+                        HashMap<Character, Integer> y = new HashMap<Character, Integer>();
 
-                        System.out.println("x1 = " + " " + x1 + "y1 = " + y1);
-                        System.out.println(str.charAt(0));
+                        x.put('a',0);
+                        x.put('b',1);
+                        x.put('c',2);
+                        x.put('d',3);
+                        x.put('e',4);
+                        x.put('f',5);
+                        x.put('g',6);
+                        x.put('h',7);
 
-//                        Cell cell1 = logic.getCellByXY(x1,y1);
-//                        Cell cell2 = logic.getCellByXY(x2, y2);
-//
-//                        System.out.println(cell1 + " " + cell2);//x = 25 y = 300 x = 80 y = 245 (a3b4)
+                        y.put('1',7);
+                        y.put('2',6);
+                        y.put('3',5);
+                        y.put('4',4);
+                        y.put('5',3);
+                        y.put('6',2);
+                        y.put('7',1);
+                        y.put('8',0);
 
-//                        logic.userStep(cell2, cell1);
+                        int x1 = x.get(str.charAt(0)) * 55 + 25;
+                        int x2 = x.get(str.charAt(2)) * 55 + 25;
+
+                        int y1 = y.get(str.charAt(1)) * 55 + 25;
+                        int y2 = y.get(str.charAt(3)) * 55 + 25;
+
+                        Cell cell1 = logic.getCellByXY(x1,y1);
+                        Cell cell2 = logic.getCellByXY(x2, y2);
+
+                        System.out.println("cell1: " + cell1 + " " + "cell2: " + cell2);
+
+                        logic.userStep(cell1, cell2);
 
                         System.out.println("Client " + str);
                     }
@@ -149,23 +134,3 @@ public class CheckersServer {
         }
     }
 }
-
-
-//    Scanner in = new Scanner(socket.getInputStream());//входящий поток;
-//    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);//возврат потока вывода;
-//    Scanner console = new Scanner(System.in);//ввод сообщений в консоль;
-//
-//    Thread t1 = new Thread(new Runnable() { //поток выхода и его запуск;
-//        @Override
-//        public void run() {
-//            while (true) {
-//                String str = in.nextLine();
-//                if(str.equals("/end")) {
-//                    out.println("/end");
-//                    break;
-//                }
-//                System.out.println("Client " + str);
-//            }
-//        }
-//    });
-//            t1.start();
