@@ -80,7 +80,7 @@ public class ChessBoardData {
     /* Each cell's coordinates (left upper corner) */
     int cX;
     int cY;
-    boolean gameExit = false;
+    public boolean gameExit = false;
     boolean gameOwer = false;
     Lang LANG = Lang.RU;
     private NodeList menuValues;
